@@ -10,9 +10,9 @@ double elapsedTime;
 double deltaTime;
 bool keyPressed[K_COUNT];
 COORD charLocation;
-unsigned short swordLength;
 COORD consoleSize;
-char character[] = {"(c') [_\\]\\/  \\ "};
+char character[] = {"__          | \\         =[_H)--.____=[+-,------' [_/""      "};
+int* bullets;
 
 void init()
 {
@@ -32,10 +32,14 @@ void init()
     charLocation.Y = consoleSize.Y / 2;*/
 
 	charLocation.X = 0;
-	charLocation.Y = consoleSize.Y / 2 - 2;
+	charLocation.Y = consoleSize.Y / 2 - 3;
 
-	swordLength = 0;
-
+	bullets = new int[consoleSize.X - 12];
+	for (int count = 0; count < consoleSize.X - 12; count++)
+	{
+		bullets[count] = 0;
+	}
+	
     elapsedTime = 0.0;
 }
 
@@ -51,6 +55,7 @@ void getInput()
     keyPressed[K_DOWN] = isKeyPressed(VK_DOWN);
     keyPressed[K_LEFT] = isKeyPressed(VK_LEFT);
     keyPressed[K_RIGHT] = isKeyPressed(VK_RIGHT);
+	keyPressed[K_SPACE] = isKeyPressed(VK_SPACE);
     keyPressed[K_ESCAPE] = isKeyPressed(VK_ESCAPE);
 }
 
@@ -66,21 +71,26 @@ void update(double dt)
         Beep(1440, 30);
         charLocation.Y--; 
     }
-    if (keyPressed[K_LEFT] && swordLength > 0)
+    if (keyPressed[K_LEFT] && charLocation.X > 0)
     {
         Beep(1440, 30);
-        swordLength--; 
+        charLocation.X--; 
     }
     if (keyPressed[K_DOWN] && charLocation.Y < consoleSize.Y - 1)
     {
         Beep(1440, 30);
         charLocation.Y++; 
     }
-    if (keyPressed[K_RIGHT] && swordLength < consoleSize.X - 1)
+    if (keyPressed[K_RIGHT] && charLocation.X < consoleSize.X - 1)
     {
         Beep(1440, 30);
-        swordLength++; 
+        charLocation.X++; 
     }
+
+	if (keyPressed[K_SPACE])
+		bullets[0] = charLocation.Y;
+	else
+		bullets[0] = 0;
 
     // quits the game if player hits the escape key
     if (keyPressed[K_ESCAPE])
@@ -109,26 +119,35 @@ void render()
 	}*/
 
     // render time taken to calculate this frame
-    gotoXY(70, 0);
+    /*gotoXY(70, 0);
     colour(0x1A);
     std::cout << 1.0 / deltaTime << "fps" << std::endl;
   
     gotoXY(0, 0);
     colour(0x59);
-    std::cout << elapsedTime << "secs" << std::endl;
+    std::cout << elapsedTime << "secs" << std::endl;*/
 
     // render character
-	for (int count = -1; count <= 1; count++)
+	for (int count = -2; count <= 2; count++)
 	{
-		gotoXY(0, charLocation.Y + count);
+		gotoXY(charLocation.X, charLocation.Y + count);
 		colour(0x0C);
-		for (int count2 = 0; count2 < 5; count2++)
-			std::cout << character[(1+count)*5 + count2];
+		for (int count2 = 0; count2 < 12; count2++)
+			std::cout << character[(2+count)*12 + count2];
 	}
 
-	gotoXY(5, charLocation.Y);
-	for (int count = 0; count < swordLength; count++)
-		std::cout << "=";
-	std::cout << ">";
+	for (int count = 0; count < consoleSize.X - 12; count++)
+	{
+		if (bullets[count])
+		{
+			gotoXY(12 + count, bullets[count]);
+			std::cout << '_';
+		}
+	}
+
+	for (int count = consoleSize.X - 12; count > 0; count--)
+	{
+		bullets[count] = bullets[count - 1];
+	}
     
 }
