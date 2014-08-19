@@ -13,7 +13,7 @@ unsigned int bulletBuffer;
 COORD shipLocation;
 COORD consoleSize;
 char ship[5][20];
-size_t shipLen = strlen(ship[2]);
+size_t shipLen;
 int* bullets;
 
 void init()
@@ -37,6 +37,8 @@ void init()
 	shipLocation.Y = consoleSize.Y / 2 - 3;
 	
 	chooseShip(1);
+
+	shipLen = strlen(ship[3]);
 
 	bullets = new int[consoleSize.X  - shipLen];
 	for (int count = 0; count < consoleSize.X - shipLen; count++)
