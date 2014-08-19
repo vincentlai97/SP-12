@@ -82,7 +82,7 @@ void checkBulletCollision()
 			{
 				for (int count3 = 0; count3 < enemyNum[count2].size[0]; count3++)
 				{
-					if (count + shipLen == enemyNum[count2].location.X && bullets[count] == enemyNum[count2].location.Y)
+					if (count + shipLen == enemyNum[count2].location.X && bullets[count] == enemyNum[count2].location.Y + count3)
 					{
 						bullets[count] = 0;
 						enemyNum[count2].size[0] = 0;
