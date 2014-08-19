@@ -2,6 +2,14 @@
 #define _GAME_H
 
 #include "Framework\timer.h"
+#include <string>
+#include <vector>
+
+struct Entry
+{
+	std::string name;
+	int score;
+};
 
 extern StopWatch g_timer;
 extern bool g_quitGame;
