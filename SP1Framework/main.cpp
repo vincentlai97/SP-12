@@ -5,7 +5,7 @@
 
 
 StopWatch g_timer;            // Timer function to keep track of time and the frame rate
-bool g_quitGame = false;      // Set to true if you want to quit the game
+bool g_quitGame = true;      // Set to true if you want to quit the game
 const unsigned char FPS = 20; // FPS of this game
 const unsigned int frameTime = 1000 / FPS; // time for each frame
 
@@ -39,12 +39,13 @@ int main()
 			break;
 		case 2: DisplayOptions();
 			break;
-		case 3: shutdown();
+		case 3: ChangeShip();
 			break;
+		case 4: shutdown();
 		default:
 			break;
 		}
-	} while ( choice != 3 );
+	} while ( choice != 4 );
 	return EXIT_SUCCESS;
 }
 

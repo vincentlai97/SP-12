@@ -3,6 +3,7 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
+#include <vector>
 
 void chooseShip(int shipNum)
 {

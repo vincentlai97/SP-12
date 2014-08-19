@@ -34,10 +34,9 @@ void init()
     /*shipLocation.X = consoleSize.X / 2;
     shipLocation.Y = consoleSize.Y / 2;*/
 
-	shipLocation.X = 0;
+
+	shipLocation.X = 13;
 	shipLocation.Y = consoleSize.Y / 2 - 3;
-	
-	chooseShip(2);
 
 	shipLen = strlen(ship[2]);
 
@@ -116,13 +115,16 @@ void update(double dt)
 
     // quits the game if player hits the escape key
     if (keyPressed[K_ESCAPE])
-        g_quitGame = true;    
+	{
+		cls();
+        g_quitGame = true;
+	}
 }
 
 void render()
 {
     // clear previous screen
-    colour(0x0F);
+    colour(0x0D);
     cls();
 
     //render the game
@@ -142,11 +144,11 @@ void render()
 
     // render time taken to calculate this frame
     gotoXY(70, 0);
-    colour(0x1A);
+    colour(0x10A);
     std::cout << 1.0 / deltaTime << "fps" << std::endl;
   
     gotoXY(0, 0);
-    colour(0x59);
+    colour(0x10A);
     std::cout << elapsedTime << "secs" << std::endl;
 
     renderShip();
