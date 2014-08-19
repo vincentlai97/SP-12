@@ -13,7 +13,7 @@ unsigned int bulletBuffer;
 unsigned int moveBuffer;
 COORD shipLocation;
 COORD consoleSize;
-char ship[] = {"__          | \\         =[_H)--.____=[+-,------' [_/""      "};
+char ship[][];
 int* bullets;
 
 void init()
@@ -44,6 +44,8 @@ void init()
 	
 	bulletBuffer = 0;
 	moveBuffer = 0;
+
+	chooseShip(1);
 
     elapsedTime = 0.0;
 }

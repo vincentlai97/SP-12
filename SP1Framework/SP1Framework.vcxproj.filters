@@ -36,6 +36,9 @@
     <ClCompile Include="Vincent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Angus.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Framework\console.h">
