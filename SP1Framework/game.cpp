@@ -36,7 +36,7 @@ void init()
 	shipLocation.X = 0;
 	shipLocation.Y = consoleSize.Y / 2 - 3;
 	
-	chooseShip(1);
+	chooseShip(2);
 
 	shipLen = strlen(ship[3]);
 

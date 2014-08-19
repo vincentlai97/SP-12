@@ -31,4 +31,9 @@ void renderShip();
 void renderBullets();
 void chooseShip(int);
 
+void DisplayOptions();
+void DisplayMainMenu();
+void DisplayInGame();
+int getKey(); //Get user input, not to be confused with the up down etc
+
 #endif _GAME_H
