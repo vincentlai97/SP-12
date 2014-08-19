@@ -2,6 +2,7 @@
 #include "Framework\console.h"
 #include <iostream>
 #include <iomanip>
+#include <string>
 
 void chooseShip(int shipNum)
 {
@@ -11,7 +12,7 @@ void chooseShip(int shipNum)
 		"| \\",
 		"=[_H)--.____",
 		"=[+-,------'",
-		"[_/"
+		" [_/"
 	}; 
 	char ship2[5][20] = 
 	{
@@ -44,7 +45,7 @@ class Scoreboard
 	public:
 		void addPlayer(std::string playernName, int points) 
 		{
-			char playerName; 
+			std::string playerName; 
 			Entry e;
 			e.name = playerName;
 			e.score = points;
