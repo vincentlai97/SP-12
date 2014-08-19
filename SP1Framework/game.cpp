@@ -15,6 +15,7 @@ COORD consoleSize;
 char ship[5][20];
 size_t shipLen;
 int* bullets;
+enemies enemyNum[10];
 
 void init()
 {
@@ -36,9 +37,9 @@ void init()
 	shipLocation.X = 0;
 	shipLocation.Y = consoleSize.Y / 2 - 3;
 	
-	chooseShip(1);
+	chooseShip(2);
 
-	shipLen = strlen(ship[3]);
+	shipLen = strlen(ship[2]);
 
 	bullets = new int[consoleSize.X  - shipLen];
 	for (int count = 0; count < consoleSize.X - shipLen; count++)
@@ -47,6 +48,12 @@ void init()
 	}
 	
 	bulletBuffer = 0;
+
+	for (int count = 0; count < 10; count++)
+	{
+		enemyNum[count].size[0] = 0;
+		enemyNum[count].size[1] = 0;
+	}
 
     elapsedTime = 0.0;
 }
@@ -98,8 +105,8 @@ void update(double dt)
 
 	if (keyPressed[K_SPACE] && bulletBuffer == 0)
 	{
-			bullets[shipLocation.X] = shipLocation.Y;
-			bulletBuffer += 5;
+		bullets[shipLocation.X] = shipLocation.Y;
+		bulletBuffer += 5;
 	}
 	else
 	{
@@ -145,4 +152,11 @@ void render()
     renderShip();
 	renderBullets();
 
+	static int foo = 0;
+	while (!foo++)
+	createEnemy();
+
+	checkBulletCollision();
+	renderEnemy();
+	checkBulletCollision();
 }
