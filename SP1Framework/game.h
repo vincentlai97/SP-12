@@ -7,7 +7,8 @@ extern StopWatch g_timer;
 extern bool g_quitGame;
 extern COORD shipLocation;
 extern COORD consoleSize;
-extern char ship[][];
+extern char ship[5][20];
+extern size_t shipLen;
 extern int* bullets;
 
 enum Keys
@@ -28,6 +29,6 @@ void render();              // renders the current state of the game to the cons
 void shutdown();            // do clean up, free memory
 void renderShip();
 void renderBullets();
-void chooseShip(int shipNum);
+void chooseShip(int);
 
 #endif _GAME_H

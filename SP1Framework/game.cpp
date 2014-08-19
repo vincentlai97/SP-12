@@ -10,10 +10,10 @@ double elapsedTime;
 double deltaTime;
 bool keyPressed[K_COUNT];
 unsigned int bulletBuffer;
-unsigned int moveBuffer;
 COORD shipLocation;
 COORD consoleSize;
-char ship[][];
+char ship[5][20];
+size_t shipLen = strlen(ship[2]);
 int* bullets;
 
 void init()
@@ -35,17 +35,16 @@ void init()
 
 	shipLocation.X = 0;
 	shipLocation.Y = consoleSize.Y / 2 - 3;
+	
+	chooseShip(1);
 
-	bullets = new int[consoleSize.X - 12];
-	for (int count = 0; count < consoleSize.X - 12; count++)
+	bullets = new int[consoleSize.X  - shipLen];
+	for (int count = 0; count < consoleSize.X - shipLen; count++)
 	{
 		bullets[count] = 0;
 	}
 	
 	bulletBuffer = 0;
-	moveBuffer = 0;
-
-	chooseShip(1);
 
     elapsedTime = 0.0;
 }
@@ -73,30 +72,26 @@ void update(double dt)
     deltaTime = dt;
 
     // Updating the location of the character based on the key press
-    if (keyPressed[K_UP] && shipLocation.Y > 1)
+    if (keyPressed[K_UP] && shipLocation.Y > 2)
     {
-        Beep(1440, 30);
+        Beep(1440, 10);
         shipLocation.Y--;
-		moveBuffer++;
 
     }
     if (keyPressed[K_LEFT] && shipLocation.X > 0)
     {
-        Beep(1440, 30);
+        Beep(1440, 10);
         shipLocation.X--;
-		moveBuffer++;
     }
     if (keyPressed[K_DOWN] && shipLocation.Y < consoleSize.Y - 3)
     {
-        Beep(1440, 30);
+        Beep(1440, 10);
         shipLocation.Y++;
-		moveBuffer++;
     }
-    if (keyPressed[K_RIGHT] && shipLocation.X < consoleSize.X - 12)
+    if (keyPressed[K_RIGHT] && shipLocation.X < consoleSize.X - strlen(ship[3]))
     {
-        Beep(1440, 30);
+        Beep(1440, 10);
         shipLocation.X++;
-		moveBuffer++;
     }
 
 	if (keyPressed[K_SPACE] && bulletBuffer == 0)
