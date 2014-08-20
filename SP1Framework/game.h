@@ -76,4 +76,4 @@ int getKey(); //Get user input, not to be confused with the up down etc
 
 void CurrentScore();
 
-#endif _GAME_H
+#endif //_GAME_H

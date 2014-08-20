@@ -24,7 +24,7 @@ void renderBullets ()
 		}
 	}
 
-	for (int count = consoleSize.X; count > shipLen; count--)
+	for (int count = consoleSize.X -1; count > shipLen; count--)
 	{
 		bullets[count] = bullets[count - 1];
 	}

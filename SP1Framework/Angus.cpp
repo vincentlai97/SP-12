@@ -2,7 +2,6 @@
 #include "Framework\console.h"
 #include <iostream>
 #include <iomanip>
-#include <string>
 
 void chooseShip(int shipNum)
 {
