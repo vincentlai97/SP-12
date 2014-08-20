@@ -141,19 +141,18 @@ void render()
 	}*/
 
     // render time taken to calculate this frame
-    gotoXY(70, 0);
+    /*gotoXY(70, 0);
     colour(0x10A);
     std::cout << 1.0 / deltaTime << "fps" << std::endl;
   
     gotoXY(0, 0);
     colour(0x10A);
-    std::cout << elapsedTime << "secs" << std::endl;
+    std::cout << elapsedTime << "secs" << std::endl;*/
 
     renderShip();
 	renderBullets();
 
-	static int foo = 0;
-	while (!foo++)
+	if (rand() % 100 < 5)
 	createEnemy();
 
 	checkBulletCollision();

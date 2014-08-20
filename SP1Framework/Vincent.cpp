@@ -33,18 +33,28 @@ void renderBullets ()
 void createEnemy ()
 {
 	char** cat; int catw = 2, cath = 3;
-    enemyNum[1].set(67, 3, catw, cath);
-
-	cat = new char*[catw];
-	for (int count = 0; count < cath; count++)
+    
+	for (int count = 0; count < 10; count++)
 	{
-		cat[count] = new char[cath];
+		if (enemyNum[count].size[0] == 0)
+		{
+			enemyNum[count].set(80, rand() % 21 + 2, catw, cath);
+
+			cat = new char*[catw];
+			for (int count2 = 0; count2 < cath; count2++)
+			{
+				cat[count2] = new char[cath];
+			}
+
+			cat[0][0] = static_cast<char>(148); cat[0][1] = static_cast<char>(95); cat[0][2] = static_cast<char>(159); cat[1][0] = static_cast<char>(234); cat[1][1] = static_cast<char>(208); cat[1][2] = static_cast<char>(234);
+
+			enemyNum[count].setlook(cat);
+
+			delete[] cat[0];
+			delete[] cat[1];
+			break;
+		}
 	}
-
-	cat[0][0] = static_cast<char>(148); cat[0][1] = static_cast<char>(95); cat[0][2] = static_cast<char>(159); cat[1][0] = static_cast<char>(234); cat[1][1] = static_cast<char>(208); cat[1][2] = static_cast<char>(234);
-
-	enemyNum[1].setlook(cat);
-
 
 }
 
@@ -58,7 +68,8 @@ void renderEnemy()
 			{
 				gotoXY(enemyNum[count].location.X, enemyNum[count].location.Y + count2);
 				for (int count3 = 0; count3 < enemyNum[count].size[1]; count3++)
-					std::cout << enemyNum[count].look[count2][count3];
+					if (enemyNum[count].location.X + count3 < 80)
+						std::cout << enemyNum[count].look[count2][count3];
 			}
 
 			if(enemyNum[count].location.X)
