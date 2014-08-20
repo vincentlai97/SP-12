@@ -4,7 +4,6 @@
 #include <iomanip>
 #include <string>
 
-
 void chooseShip(int shipNum)
 {
 	char ship1[5][20] =
