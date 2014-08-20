@@ -39,6 +39,7 @@ struct enemies
 			strcpy(look[count], l[count]);
 		}
 
+
 	}
 };
 
@@ -67,7 +68,6 @@ void renderEnemy();
 void checkBulletCollision();
 void initCat();
 
-void Pause();
 void ChangeShip();
 void DisplayOptions();
 void DisplayMainMenu();
