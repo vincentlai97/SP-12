@@ -34,9 +34,10 @@ void init()
     /*shipLocation.X = consoleSize.X / 2;
     shipLocation.Y = consoleSize.Y / 2;*/
 
-
-	shipLocation.X = 13;
+	shipLocation.X = 0;
 	shipLocation.Y = consoleSize.Y / 2 - 3;
+	
+	chooseShip(1);
 
 	shipLen = strlen(ship[2]);
 
@@ -115,16 +116,13 @@ void update(double dt)
 
     // quits the game if player hits the escape key
     if (keyPressed[K_ESCAPE])
-	{
-		cls();
-        g_quitGame = true;
-	}
+        g_quitGame = true;    
 }
 
 void render()
 {
     // clear previous screen
-    colour(0x0D);
+    colour(0x0F);
     cls();
 
     //render the game

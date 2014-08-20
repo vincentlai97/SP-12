@@ -27,7 +27,7 @@ void DisplayMainMenu()
 	cout << "       ####" << " " << "###        " << endl;
 	cout << "###    ####" << " " << "###        " << endl;
 	cout << " ######### " << " " << "###        " << endl;
-	cout << "  #######  " << " " << "### SPACE PUSSY" << endl;
+	cout << "  #######  " << " " << "### SUPER PEWTER" << endl;
 	cout << endl;
 	cout << "1 - Start" << endl << "2 - Options" << endl  << "3 - Change Ship" << endl << "4 - Exit" << endl;
 	cout << "Enter the choice you want and press enter" << endl;
@@ -39,8 +39,18 @@ void DisplayOptions()
 	cls();
 	cout << "Sound" << endl;
 	cout << "Options" << endl;
-	cout << "1 - Start" << endl;
+	cout << "1 - Back" << endl;
 	cout << "4 - Exit" << endl;
+	int H = 0;
+	H = getKey();
+
+	switch ( H )
+	{
+	case 1: DisplayMainMenu();
+		break;
+	case 2: shutdown();
+		break;
+	}
 }
 
 void DisplayInGame()
@@ -73,7 +83,9 @@ void ChangeShip()
 	colour(0x10A);
 	cls();
 	cout << "Choose the spaceship you want to use" << endl << endl;
+
 	cout << "Ship 1" << endl;
+
 	for (int count = -2; count <= 2; count++)
 	{
 		std::cout << ship1[2 + count] << endl;
@@ -81,6 +93,7 @@ void ChangeShip()
 	cout << endl;
 
 	cout << "Ship 2" << endl;
+
 	for (int count = -2; count <= 2; count++)
 	{
 		std::cout << ship2[2 + count] << endl;
@@ -89,6 +102,7 @@ void ChangeShip()
 	int shipNum = 1;
 
 	cin >> shipNum;
+
 	switch (shipNum)
 	{
 	case 1:

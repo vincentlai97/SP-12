@@ -5,7 +5,7 @@
 
 
 StopWatch g_timer;            // Timer function to keep track of time and the frame rate
-bool g_quitGame = true;      // Set to true if you want to quit the game
+bool g_quitGame = false;      // Set to true if you want to quit the game
 const unsigned char FPS = 20; // FPS of this game
 const unsigned int frameTime = 1000 / FPS; // time for each frame
 
@@ -22,8 +22,7 @@ int main() //Original code no menu
     shutdown();  // do clean up, if any. free memory.
 	
 	return 0;
-}
-*/
+}*/
 
 int main()
 {
@@ -48,6 +47,7 @@ int main()
 	} while ( choice != 4 );
 	return EXIT_SUCCESS;
 }
+
 
 // This main loop calls functions to get input, update and render the game
 // at a specific frame rate
