@@ -36,7 +36,7 @@ struct enemies
 		for (int count = 0; count < size[0]; count++)
 		{
 			look[count] = new char[size[1]];
-			strcpy(look[count], 1[count]);
+			strcpy(look[count], l[count]);
 		}
 
 	}
