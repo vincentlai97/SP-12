@@ -54,6 +54,8 @@ void init()
 		enemyNum[count].size[1] = 0;
 	}
 
+	initCat();
+
     elapsedTime = 0.0;
 }
 
@@ -112,22 +114,10 @@ void update(double dt)
 		bullets[shipLen] = 0;
 		bulletBuffer -= (bulletBuffer <= 0 ? 0 : 1);
 	}
-	
-	if (keyPressed[K_ESCAPE])
-	{
-		cls();
-		std::cout << "Paused" << std::endl;
-
-		DisplayInGame();
-		system ("pause");
-	}
 
     // quits the game if player hits the escape key
-    //if (keyPressed[K_ESCAPE])
-	//{
-		//std::cout << "Paused" << std::endl;
-	//}
-        //g_quitGame = true;    
+    if (keyPressed[K_ESCAPE])
+        g_quitGame = true;    
 }
 
 void render()
@@ -169,13 +159,5 @@ void render()
 	checkBulletCollision();
 	renderEnemy();
 	checkBulletCollision();
-}
-
-void Pause()
-{
-	if (keyPressed[K_ESCAPE])
-	{
-		system ("pause");
-		std::cout << "Paused" << std::endl;
-	}
+	CurrentScore();
 }
