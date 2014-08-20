@@ -5,12 +5,6 @@
 #include <string>
 #include <vector>
 
-struct Entry
-{
-	std::string name;
-	int score;
-};
-
 enum Keys
 {
     K_UP,
@@ -57,6 +51,7 @@ extern char ship[5][20];
 extern size_t shipLen;
 extern int* bullets;
 extern enemies enemyNum[10];
+extern int score;
 
 void init();                // initialize your variables, allocate memory, etc
 void getInput();            // get input from player
@@ -75,5 +70,7 @@ void DisplayOptions();
 void DisplayMainMenu();
 void DisplayInGame();
 int getKey(); //Get user input, not to be confused with the up down etc
+
+void CurrentScore();
 
 #endif _GAME_H

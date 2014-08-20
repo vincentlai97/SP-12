@@ -16,6 +16,7 @@ char ship[5][20];
 size_t shipLen;
 int* bullets;
 enemies enemyNum[10];
+int score;
 
 void init()
 {
@@ -158,4 +159,5 @@ void render()
 	checkBulletCollision();
 	renderEnemy();
 	checkBulletCollision();
+	CurrentScore();
 }

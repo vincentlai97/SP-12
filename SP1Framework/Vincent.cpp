@@ -98,6 +98,7 @@ void checkBulletCollision()
 						bullets[count] = 0;
 						enemyNum[count2].size[0] = 0;
 						enemyNum[count2].size[1] = 0;
+						score++;
 					}
 				}
 			}

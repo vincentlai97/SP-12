@@ -3,7 +3,7 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
-#include <vector>
+
 
 void chooseShip(int shipNum)
 {
@@ -39,4 +39,11 @@ void chooseShip(int shipNum)
 		}
 		break;
 	}
+}
+
+void CurrentScore()
+{
+	gotoXY(35,0);
+	colour(0x10A);
+	std::cout << "score: " << score << std::endl;
 }
