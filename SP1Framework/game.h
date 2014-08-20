@@ -5,6 +5,12 @@
 #include <string>
 #include <vector>
 
+struct Entry
+{
+	std::string name;
+	int score;
+};
+
 enum Keys
 {
     K_UP,
