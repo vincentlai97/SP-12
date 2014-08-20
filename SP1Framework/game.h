@@ -21,13 +21,15 @@ struct enemies
 	COORD location;
 	int size[2];
 	char** look;
+	bool dir;
 
-	void set(int x, int y, int width, int height)
+	void set(int x, int y, int width, int height, bool d)
 	{
 		location.X = x;
 		location.Y = y;
 		size[0] = width;
 		size[1] = height;
+		dir = d;
 	}
 
 	void setlook(char** l)
@@ -53,6 +55,7 @@ extern int bullets[80];
 extern enemies enemyNum[10];
 extern int score;
 extern char** enemycat;
+extern enemies catArr[40];
 
 void init();                // initialize your variables, allocate memory, etc
 void getInput();            // get input from player
@@ -64,9 +67,12 @@ void renderShip();
 void renderBullets();
 void createEnemy(int, int, char**);
 void createEnemy(char);
-void renderEnemy();
-void checkBulletCollision();
+void renderEnemy(enemies[], int);
+void checkBulletCollision(enemies[], int);
+
 void initCat();
+void createCat(int);
+void moveCat(int);
 
 void ChangeShip();
 void DisplayOptions();

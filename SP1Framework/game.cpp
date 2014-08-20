@@ -18,6 +18,7 @@ int bullets[80] = {0};
 enemies enemyNum[10];
 int score;
 char** enemycat;
+enemies catArr[40];
 
 void init()
 {
@@ -38,8 +39,6 @@ void init()
 
 	shipLocation.X = 0;
 	shipLocation.Y = consoleSize.Y / 2 - 3;
-	
-	chooseShip(1);
 
 	shipLen = strlen(ship[2]);
 
@@ -107,7 +106,7 @@ void update(double dt)
 	if (keyPressed[K_SPACE] && bulletBuffer == 0)
 	{
 		bullets[shipLocation.X + shipLen] = shipLocation.Y;
-		bulletBuffer += 5;
+		bulletBuffer += 3;
 	}
 	else
 	{
@@ -153,11 +152,14 @@ void render()
     renderShip();
 	renderBullets();
 
-	if (rand() % 100 > 90)
+	static int num = 0;
+
+	if (!(num++%4) && num < 41)
 	createEnemy('c');
 
-	checkBulletCollision();
-	renderEnemy();
-	checkBulletCollision();
+	checkBulletCollision(catArr, 10);
+	moveCat(10);
+	renderEnemy(catArr, 10);
+	checkBulletCollision(catArr, 10);
 	CurrentScore();
 }
