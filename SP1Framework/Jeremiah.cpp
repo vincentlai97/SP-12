@@ -57,8 +57,20 @@ void DisplayInGame()
 {
 	colour(0x10A);
 	cls();
-	cout << "2 - Options" << endl;
-	cout << "3 - Options" << endl;
+	cout << "1 - Back to the Title Screen" << endl;
+	cout << "2 - Resume game" << endl;
+	cout << "3 - Quit Game" << endl;
+	int H = 0;
+	H = getKey();
+	switch(H)
+	{
+	case 1: DisplayMainMenu();
+		break;
+	case 2: system("resume");
+		break;
+	case 3: shutdown();
+		break;
+	}
 }
 
 void ChangeShip()
@@ -119,3 +131,4 @@ void ChangeShip()
 		break;
 	}
 }
+
