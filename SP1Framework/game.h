@@ -30,7 +30,7 @@ struct enemies
 		size[1] = height;
 	}
 
-	void setlook(char* l[])
+	void setlook(char** l)
 	{
 		look = new char*[size[0]];
 		for (int count = 0; count < size[0]; count++)
@@ -51,7 +51,11 @@ extern char ship[5][20];
 extern size_t shipLen;
 extern int* bullets;
 extern enemies enemyNum[10];
+<<<<<<< Updated upstream
 extern int score;
+=======
+extern char** enemycat;
+>>>>>>> Stashed changes
 
 void init();                // initialize your variables, allocate memory, etc
 void getInput();            // get input from player
@@ -61,9 +65,11 @@ void shutdown();            // do clean up, free memory
 void chooseShip(int);
 void renderShip();
 void renderBullets();
-void createEnemy();
+void createEnemy(int, int, char**);
+void createEnemy(char);
 void renderEnemy();
 void checkBulletCollision();
+void initCat();
 
 void ChangeShip();
 void DisplayOptions();

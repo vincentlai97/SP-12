@@ -16,7 +16,11 @@ char ship[5][20];
 size_t shipLen;
 int* bullets;
 enemies enemyNum[10];
+<<<<<<< Updated upstream
 int score;
+=======
+char** enemycat;
+>>>>>>> Stashed changes
 
 void init()
 {
@@ -55,6 +59,8 @@ void init()
 		enemyNum[count].size[0] = 0;
 		enemyNum[count].size[1] = 0;
 	}
+
+	initCat();
 
     elapsedTime = 0.0;
 }
@@ -153,8 +159,8 @@ void render()
     renderShip();
 	renderBullets();
 
-	if (rand() % 100 < 5)
-	createEnemy();
+	if (rand() % 100 > 90)
+	createEnemy('c');
 
 	checkBulletCollision();
 	renderEnemy();

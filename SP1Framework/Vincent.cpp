@@ -30,32 +30,30 @@ void renderBullets ()
 	}
 }
 
-void createEnemy ()
+void createEnemy (int width, int height, char** enemy)
 {
-	char** cat; int catw = 2, cath = 3;
-    
 	for (int count = 0; count < 10; count++)
 	{
 		if (enemyNum[count].size[0] == 0)
 		{
-			enemyNum[count].set(80, rand() % 21 + 2, catw, cath);
+			enemyNum[count].set(80, rand() % 21 + 2, width, height);
 
-			cat = new char*[catw];
-			for (int count2 = 0; count2 < cath; count2++)
-			{
-				cat[count2] = new char[cath];
-			}
+			enemyNum[count].setlook(enemy);
 
-			cat[0][0] = static_cast<char>(148); cat[0][1] = static_cast<char>(95); cat[0][2] = static_cast<char>(159); cat[1][0] = static_cast<char>(234); cat[1][1] = static_cast<char>(208); cat[1][2] = static_cast<char>(234);
-
-			enemyNum[count].setlook(cat);
-
-			delete[] cat[0];
-			delete[] cat[1];
 			break;
 		}
 	}
 
+}
+
+void createEnemy (char enemy)
+{
+	switch (enemy)
+	{
+	case 99:
+		createEnemy (2, 3, enemycat);
+		break;
+	}
 }
 
 void renderEnemy()
@@ -104,4 +102,18 @@ void checkBulletCollision()
 			}
 		}
 	}
+}
+
+void initCat ()
+{
+	enemycat = new char* [2];
+	for (int count = 0; count < 2; count ++)
+		enemycat[count] = new char [3];
+
+	enemycat[0][0] = static_cast<char>(148);
+	enemycat[0][1] = static_cast<char>(95);
+	enemycat[0][2] = static_cast<char>(159);
+	enemycat[1][0] = static_cast<char>(234);
+	enemycat[1][1] = static_cast<char>(208);
+	enemycat[1][2] = static_cast<char>(234);
 }
