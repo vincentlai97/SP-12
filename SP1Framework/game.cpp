@@ -14,13 +14,10 @@ COORD shipLocation;
 COORD consoleSize;
 char ship[5][20];
 size_t shipLen;
-int* bullets;
+int bullets[80] = {0};
 enemies enemyNum[10];
-<<<<<<< Updated upstream
 int score;
-=======
 char** enemycat;
->>>>>>> Stashed changes
 
 void init()
 {
@@ -46,11 +43,8 @@ void init()
 
 	shipLen = strlen(ship[2]);
 
-	bullets = new int[consoleSize.X  - shipLen];
-	for (int count = 0; count < consoleSize.X - shipLen; count++)
-	{
+	for (int count = 0; count <80; count++)
 		bullets[count] = 0;
-	}
 	
 	bulletBuffer = 0;
 
@@ -112,12 +106,12 @@ void update(double dt)
 
 	if (keyPressed[K_SPACE] && bulletBuffer == 0)
 	{
-		bullets[shipLocation.X] = shipLocation.Y;
+		bullets[shipLocation.X + shipLen] = shipLocation.Y;
 		bulletBuffer += 5;
 	}
 	else
 	{
-		bullets[0] = 0;
+		bullets[shipLen] = 0;
 		bulletBuffer -= (bulletBuffer <= 0 ? 0 : 1);
 	}
 
@@ -148,13 +142,13 @@ void render()
 	}*/
 
     // render time taken to calculate this frame
-    /*gotoXY(70, 0);
+    gotoXY(70, 0);
     colour(0x10A);
     std::cout << 1.0 / deltaTime << "fps" << std::endl;
   
     gotoXY(0, 0);
     colour(0x10A);
-    std::cout << elapsedTime << "secs" << std::endl;*/
+    std::cout << elapsedTime << "secs" << std::endl;
 
     renderShip();
 	renderBullets();

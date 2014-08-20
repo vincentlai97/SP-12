@@ -15,16 +15,16 @@ void renderShip()
 
 void renderBullets ()
 {
-	for (int count = 0; count < consoleSize.X - shipLen; count++)
+	for (int count = shipLen; count < consoleSize.X; count++)
 	{
 		if (bullets[count])
 		{
-			gotoXY(shipLen + count, bullets[count]);
+			gotoXY(count, bullets[count]);
 			std::cout << '-';
 		}
 	}
 
-	for (int count = consoleSize.X - shipLen; count > 0; count--)
+	for (int count = consoleSize.X; count > shipLen; count--)
 	{
 		bullets[count] = bullets[count - 1];
 	}
@@ -83,7 +83,7 @@ void renderEnemy()
 
 void checkBulletCollision()
 {
-	for (int count = 0; count < consoleSize.X - shipLen; count++)
+	for (int count = shipLen; count < consoleSize.X; count++)
 	{
 		if (bullets[count])
 		{
@@ -91,7 +91,7 @@ void checkBulletCollision()
 			{
 				for (int count3 = 0; count3 < enemyNum[count2].size[0]; count3++)
 				{
-					if (count + shipLen == enemyNum[count2].location.X && bullets[count] == enemyNum[count2].location.Y + count3)
+					if (count == enemyNum[count2].location.X && bullets[count] == enemyNum[count2].location.Y + count3)
 					{
 						bullets[count] = 0;
 						enemyNum[count2].size[0] = 0;

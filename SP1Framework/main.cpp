@@ -30,11 +30,11 @@ int main()
 	DisplayMainMenu(); //Show main menu
 	do
 	{
-		init();      // initialize your variables
 		choice = getKey();
 		switch(choice)
 		{
-		case 1: mainLoop();
+		case 1: init();      // initialize your variables
+			mainLoop();
 			break;
 		case 2: DisplayOptions();
 			break;

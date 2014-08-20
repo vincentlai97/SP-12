@@ -49,13 +49,10 @@ extern COORD shipLocation;
 extern COORD consoleSize;
 extern char ship[5][20];
 extern size_t shipLen;
-extern int* bullets;
+extern int bullets[80];
 extern enemies enemyNum[10];
-<<<<<<< Updated upstream
 extern int score;
-=======
 extern char** enemycat;
->>>>>>> Stashed changes
 
 void init();                // initialize your variables, allocate memory, etc
 void getInput();            // get input from player
