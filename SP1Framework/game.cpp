@@ -107,7 +107,7 @@ void update(double dt)
 	if (keyPressed[K_SPACE] && bulletBuffer == 0)
 	{
 		bullets[shipLocation.X + shipLen] = shipLocation.Y;
-		bulletBuffer += 3;
+		bulletBuffer += 2;
 	}
 	else
 	{
@@ -159,12 +159,12 @@ void render()
 
 	static int num = 0;
 
-	if (!(num++%4) && num < 41)
-	createEnemy('c');
+	if (!(num++%3) && num < 31)
+	createCat(10);
 
 	checkBulletCollision(catArr, 10);
 	moveCat(10);
 	renderEnemy(catArr, 10);
-	checkBulletCollision(catArr, 10);
+		checkBulletCollision(catArr, 10);
 	CurrentScore();
 }

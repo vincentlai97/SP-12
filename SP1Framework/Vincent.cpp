@@ -30,30 +30,20 @@ void renderBullets ()
 	}
 }
 
-//void createEnemy (int width, int height, char** enemy, int y)
-//{
-//	for (int count = 0; count < 10; count++)
-//	{
-//		if (enemyNum[count].size[0] == 0)
-//		{
-//			enemyNum[count].set(80, y, width, height, 1);
-//
-//			enemyNum[count].setlook(enemy);
-//
-//			break;
-//		}
-//	}
-//
-//}
-
-void createEnemy (char enemy)
+bool createEnemy (enemies enemyArr[], int size, int width, int height, char** enemy, int y)
 {
-	switch (enemy)
+	for (int count = 0; count < size; count++)
 	{
-	case 99:
-		createCat (10);
-		break;
+		if (enemyArr[count].size[0] == 0)
+		{
+			enemyArr[count].set(80, y, width, height, 1);
+
+			enemyArr[count].setlook(enemy);
+
+			return 1;
+		}
 	}
+	return 0;
 }
 
 void renderEnemy(enemies enemyArr[], int size)
@@ -141,16 +131,5 @@ void moveCat(int size)
 void createCat (int Num)
 {
 	static int y = 1;
-	for (int count = 0; count < Num; count++)
-	{
-		if (catArr[count].size[0] == 0)
-		{
-			catArr[count].set(80, y, 2, 3, 1);
-
-			catArr[count].setlook(enemycat);
-
-			y++;
-			break;
-		}
-	}
+	createEnemy(catArr, Num, 2, 3, enemycat, y);
 }

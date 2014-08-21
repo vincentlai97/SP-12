@@ -65,8 +65,7 @@ void shutdown();            // do clean up, free memory
 void chooseShip(int);
 void renderShip();
 void renderBullets();
-void createEnemy(int, int, char**);
-void createEnemy(char);
+bool createEnemy (enemies[], int, int, int, char** , int);
 void renderEnemy(enemies[], int);
 void checkBulletCollision(enemies[], int);
 
