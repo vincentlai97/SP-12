@@ -125,7 +125,6 @@ void update(double dt)
     if (keyPressed[K_ESCAPE])
 	{
 		DisplayInGame();
-		system("pause");
 	}
         //g_quitGame = true;    
 }

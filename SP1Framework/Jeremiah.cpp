@@ -21,19 +21,23 @@ void DisplayMainMenu()
 {
 	colour(0x10A);
 	cls();
-	cout << "  #######  " << " " << "########   " << endl;
-	cout << " ######### " << " " << "###   #### " << endl;
-	cout << "####    ###" << " " << "###    ####" << endl;
-	cout << " ####      " << " " << "###   #### " << endl;
-	cout << "   ####    " << " " << "########   " << endl;
-	cout << "      #### " << " " << "###        " << endl;
-	cout << "       ####" << " " << "###        " << endl;
-	cout << "###    ####" << " " << "###        " << endl;
-	cout << " ######### " << " " << "###        " << endl;
-	cout << "  #######  " << " " << "### SUPER PEWTER" << endl;
+	cout << "                             #######  " << " " << "########   " << endl;
+	cout << "                            ######### " << " " << "###   #### " << endl;
+	cout << "                           ####    ###" << " " << "###    ####" << endl;
+	cout << "                            ####      " << " " << "###   #### " << endl;
+	cout << "                              ####    " << " " << "########   " << endl;
+	cout << "                                 #### " << " " << "###        " << endl;
+	cout << "                                  ####" << " " << "###        " << endl;
+	cout << "                           ###    ####" << " " << "###        " << endl;
+	cout << "                            ######### " << " " << "###        " << endl;
+	cout << "                             #######  " << " " << "### SPACE PEWTER" << endl;
 	cout << endl;
-	cout << "1 - Start" << endl << "2 - Options" << endl  << "3 - Change Ship" << endl << "4 - Exit" << endl;
-	cout << "Enter the choice you want and press enter" << endl;
+	cout << "                                1 - Start" << endl;
+	cout << "                                2 - Options" << endl;
+	cout << "                                3 - Choose Ship" << endl;
+	cout << "                                4 - Exit Game" << endl;
+	cout << "                    Enter the choice you want and press enter" << endl;
+	cout << "                                      ";
 	return;
 }
 
@@ -60,30 +64,28 @@ void DisplayOptions()
 
 void DisplayInGame()
 {
+	gotoXY(35,5);
 	colour(0x10A);
 	cls();
-	cout << "******  " << " ******  " << "*      * " << "******* " << "******* " << endl;
-	cout << "*     * " << "*      * " << "*      * " << "*       " << "*       " << endl;
-	cout << "******  " << "******** " << "*      * " << "******* " << "******* " << endl;
-	cout << "*       " << "*      * " << "*      * " << "      * " << "*       " << endl;
-	cout << "*       " << "*      * " << " ******  " << "******* " << "******* " << endl;
-	cout << "1 - Return to Main Menu" << endl;
-	cout << "2 - Options" << endl;
-	cout << "3 - Restart" << endl;
-	cout << "4 - Exit Game" << endl;
+	cout << "                        ****  " << " ****  " << "*    * " << "***** " << "***** " << endl;
+	cout << "                        *   * " << "*    * " << "*    * " << "*     " << "*     " << endl;
+	cout << "                        ****  " << "****** " << "*    * " << "***** " << "***** " << endl;
+	cout << "                        *     " << "*    * " << "*    * " << "    * " << "*     " << endl;
+	cout << "                        *     " << "*    * " << " ****  " << "***** " << "***** " << endl;
+	cout << "                                1 - Options" << endl;
+	cout << "                                2 - Restart" << endl;
+	cout << "                                3 - Exit Game" << endl;
+	cout << "                                     ";
 	int H = 0;
 	H = getKey();
 
 	switch ( H )
 	{
-	case 1: DisplayMainMenu();
+	case 1: DisplayOptions();
 		break;
-	case 2: DisplayOptions();
+	case 2: gRestart();
 		break;
-	case 3: init(); 
-		gRestart();
-		break;
-	case 4: shutdown();
+	case 3: shutdown();
 		break;
 	}
 	return;
@@ -162,6 +164,7 @@ void ChangeShip()
 
 void gRestart()
 {
+	init(); 
 	g_timer.startTimer();    // Start timer to calculate how long it takes to render this frame
     while (!g_quitGame)      // run this loop until user wants to quit 
 	{        
