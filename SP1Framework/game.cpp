@@ -19,6 +19,7 @@ enemies enemyNum[10];
 int score;
 char** enemycat;
 enemies catArr[40];
+double level;
 
 void init()
 {
@@ -54,6 +55,8 @@ void init()
 	}
 
 	initCat();
+
+	level = 1.1;
 
     elapsedTime = 0.0;
 }
@@ -157,15 +160,22 @@ void render()
     renderShip();
 	renderBullets();
 
-	static int num = 0;
+	if (level == 1.1)
+	{
+		gotoXY(30, 0);
+		colour(0x10A);
+		std::cout << "Level: " << static_cast<int>(level) << std::endl;
 
-	if (!(num++%3) && num < 31)
-	createCat(10);
+		static int counter = 0;
 
-	if (checkBulletCollision(catArr, 10)) score += 10;
-	moveCat(10);
-	renderEnemy(catArr, 10);
-	if (checkBulletCollision(catArr, 10)) score += 10;
-	checkEnemyCollision(catArr, 10);
-	CurrentScore();
+		if (!(counter++%3) && counter < 31)
+			createCat(10);
+
+		if (checkBulletCollision(catArr, 10)) score += 10;
+		moveCat(10);
+		renderEnemy(catArr, 10);
+		if (checkBulletCollision(catArr, 10)) score += 10;
+		checkEnemyCollision(catArr, 10);
+		CurrentScore();
+	}
 }

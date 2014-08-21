@@ -56,6 +56,7 @@ extern enemies enemyNum[10];
 extern int score;
 extern char** enemycat;
 extern enemies catArr[40];
+extern double level;
 
 void init();                // initialize your variables, allocate memory, etc
 void getInput();            // get input from player

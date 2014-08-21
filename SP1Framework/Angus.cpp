@@ -41,7 +41,7 @@ void chooseShip(int shipNum)
 
 void CurrentScore()
 {
-	gotoXY(35,0);
+	gotoXY(50,0);
 	colour(0x10A);
 	std::cout << "score: " << score << std::endl;
 }
