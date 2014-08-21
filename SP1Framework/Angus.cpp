@@ -43,7 +43,8 @@ void CurrentScore()
 {
 	gotoXY(45,0);
 	colour(0x10A);
-	std::cout << "Score: " << score << std::endl;
+	std::cout << "Score: ";
+	std::cout << score << std::endl;
 }
 
 

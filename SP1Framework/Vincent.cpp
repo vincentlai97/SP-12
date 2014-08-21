@@ -110,14 +110,11 @@ void initCat ()
 void initAste ()
 {
 	enemyaste = new char*[1];
-	enemyaste[0] = new char [5];
+	enemyaste[0] = new char [3];
 
 	enemyaste[0][0] = '@';
 	enemyaste[0][1] = '}';
-	for (int count = 2; count < 5; count++)
-	{
-		enemyaste[0][count] = '=';
-	}
+	enemyaste[0][2] = '=';
 }
 
 void moveCat (int size)
@@ -155,15 +152,14 @@ void moveAste (int size)
 
 void createCat (int num)
 {
-	static const int y = 1;
+	const int y = 1;
 	createEnemy(catArr, num, 2, 3, enemycat, y);
 }
 
 void createAste (int num)
 {
 	int y = rand() % 21 + 1;
-	int len = rand() % 3 + 1;
-	createEnemy(asteArr, num, 1, len, enemyaste, y);
+	createEnemy(asteArr, num, 1, 3, enemyaste, y);
 }
 
 void checkEnemyCollision (enemies enemyArr[], int size)
@@ -201,11 +197,11 @@ bool Levelcat (int level)
 
 bool Levelaste (int level)
 {
-	int num = (level == 1 ? 20 : (level == 2 ? 35 : 60));
+	int num = (level == 1 ? 20 : (level == 2 ? 40 : 60));
 
 	static int counter = 0;
 
- 	if (counter <= num && (rand() % 50) + num*3 > 40)
+	if (counter < num && (!counter || rand() % 100 > (90 - level)))
 	{
 		createAste(num);
 		counter++;

@@ -152,7 +152,7 @@ void render()
 	}*/
 
     // render time taken to calculate this frame
-    gotoXY(70, 0);
+    gotoXY(0, 1);
     colour(0x10A);
     std::cout << 1.0 / deltaTime << "fps" << std::endl;
   
@@ -165,14 +165,14 @@ void render()
 
 	if (level == 1.1)
 	{
-		displayLevel(static_cast<int>(level));
 		if (Levelcat (static_cast<int>(level))) level = 1.2;
+		displayLevel(static_cast<int>(level));
 		CurrentScore();
  	}
-	/*if (level == 1.2)
+	if (level == 1.2)
 	{
-		displayLevel(static_cast<int>(level));
   		if (Levelaste (static_cast<int>(level))) level = 1.3;
+		displayLevel(static_cast<int>(level));
 		CurrentScore();
-	}*/
+	}
 }
