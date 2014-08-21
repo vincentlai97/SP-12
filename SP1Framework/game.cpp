@@ -165,6 +165,7 @@ void render()
 	checkBulletCollision(catArr, 10);
 	moveCat(10);
 	renderEnemy(catArr, 10);
-		checkBulletCollision(catArr, 10);
+	checkBulletCollision(catArr, 10);
+	checkEnemyCollision(catArr, 10);
 	CurrentScore();
 }

@@ -134,3 +134,18 @@ void createCat (int Num)
 	static int y = 1;
 	createEnemy(catArr, Num, 2, 3, enemycat, y);
 }
+
+void checkEnemyCollision (enemies enemyArr[], int size)
+{
+	for (int count = 0; count < size; count++)
+	{
+		if (enemyArr[count].location.X >= 1 - enemyArr[count].size[0] + shipLocation.X && 
+			enemyArr[count].location.X <= shipLen + shipLocation.X &&
+			enemyArr[count].location.Y >= -1 - enemyArr[count].size[1] + shipLocation.Y &&
+			enemyArr[count].location.Y <= 2 + shipLocation.Y)
+		{
+			enemyArr[count].size[0] = 0;
+			enemyArr[count].size[0] = 0;
+		}
+	}
+}
