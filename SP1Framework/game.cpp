@@ -22,6 +22,10 @@ char** enemyaste;
 enemies catArr[40];
 enemies asteArr[60];
 double level;
+char** boss1;
+enemies boss;
+enemies bossBullets[100];
+char** bossBullet;
 
 void init()
 {
@@ -174,4 +178,11 @@ void render()
 		displayLevel(static_cast<int>(level));
 		CurrentScore();
 	}
+	/*if (level == 1.1)
+	{
+		initBoss(1);
+		if (levelBoss(static_cast<int>(level))) level = 2.1;
+		displayLevel(static_cast<int>(level));
+		CurrentScore();
+	}*/
 }

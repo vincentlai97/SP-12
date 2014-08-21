@@ -30,7 +30,7 @@ void renderBullets ()
 	}
 }
 
-bool createEnemy (enemies enemyArr[], int size, int width, int height, char** enemy, int y)
+bool createEnemy (enemies enemyArr[], int size, int width, int height, char** enemy, int y, int x)
 {
 	for (int count = 0; count < size; count++)
 	{
@@ -46,46 +46,58 @@ bool createEnemy (enemies enemyArr[], int size, int width, int height, char** en
 	return 0;
 }
 
-void renderEnemy(enemies enemyArr[], int size)
+void renderEnemy (enemies enemyArr[], int size)
 {
 	for (int count = 0; count < size; count++)
 	{
-		if (enemyArr[count].size[0] && enemyArr[count].size[1])
-		{
-			for (int count2 = 0; count2 < enemyArr[count].size[0]; count2++)
-			{
-				gotoXY(enemyArr[count].location.X, enemyArr[count].location.Y + count2);
-				for (int count3 = 0; count3 < enemyArr[count].size[1]; count3++)
-					if (enemyArr[count].location.X + count3 < 80)
-						std::cout << enemyArr[count].look[count2][count3];
-			}
+		renderEnemy(enemyArr[count]);
+	}
+}
 
-			if(!enemyArr[count].location.X)
-			{
-				enemyArr[count].size[0] = 0;
-				enemyArr[count].size[1] = 0;
-			}
+void renderEnemy (enemies& enemy)
+{
+	if (enemy.size[0] && enemy.size[1])
+	{
+		for (int count2 = 0; count2 < enemy.size[1]; count2++)
+		{
+			gotoXY(enemy.location.X, enemy.location.Y + count2);
+			for (int count3 = 0; count3 < enemy.size[0]; count3++)
+				if (enemy.location.X + count3 < 80)
+					std::cout << enemy.look[count2][count3];
+		}
+
+		if(!enemy.location.X)
+		{
+			enemy.size[0] = 0;
+			enemy.size[1] = 0;
 		}
 	}
 }
 
 bool checkBulletCollision(enemies enemyArr[], int size)
 {
+	for (int count = 0; count < size; count++)
+	{
+		if (checkBulletCollision(enemyArr[count])) return 1;
+	}
+	return 0;
+}
+
+
+bool checkBulletCollision(enemies& enemy)
+{
 	for (int count = shipLen; count < consoleSize.X; count++)
 	{
 		if (bullets[count])
 		{
-			for (int count2 = 0; count2 < size; count2++)
+			for (int count2 = 0; count2 < enemy.size[1]; count2++)
 			{
-				for (int count3 = 0; count3 < enemyArr[count2].size[0]; count3++)
+				if (count == enemy.location.X && bullets[count] == enemy.location.Y + count2)
 				{
-					if (count == enemyArr[count2].location.X && bullets[count] == enemyArr[count2].location.Y + count3)
-					{
-						bullets[count] = 0;
-						enemyArr[count2].size[0] = 0;
-						enemyArr[count2].size[1] = 0;
-						return 1;
-					}
+					bullets[count] = 0;
+					enemy.size[0] = 0;
+					enemy.size[1] = 0;
+					return 1;
 				}
 			}
 		}
@@ -153,13 +165,13 @@ void moveAste (int size)
 void createCat (int num)
 {
 	const int y = 1;
-	createEnemy(catArr, num, 2, 3, enemycat, y);
+	createEnemy(catArr, num, 3, 2, enemycat, y);
 }
 
 void createAste (int num)
 {
 	int y = rand() % 21 + 1;
-	createEnemy(asteArr, num, 1, 3, enemyaste, y);
+	createEnemy(asteArr, num, 3, 1, enemyaste, y);
 }
 
 void checkEnemyCollision (enemies enemyArr[], int size)
@@ -224,4 +236,79 @@ bool checkClear (enemies enemyArr[], int size)
 			return 0;
 	}
 	return 1;
+}
+
+void initBoss (int num)
+{
+	switch (num)
+	{
+	case 1:
+		boss.set(70, 10, 30, 9, 1);
+		boss.life = 30;
+
+		char** boss1 = new char* [9];
+		for (int count = 0; count< 9; count++)
+			boss1[count] = new char[30];
+
+		strcpy(boss1[0], "                      ______");
+		strcpy(boss1[1], "                     /~~~~~|");
+		strcpy(boss1[2], "                .__./''''''|");
+		strcpy(boss1[3], "._____________/   |/^^^^^^^\\");
+		strcpy(boss1[4], "|             `===\"\\_______/");
+		strcpy(boss1[5], "`.             .___/^^^^^^^^\\");
+		strcpy(boss1[6], "  `------------'~~~\\________/");
+		strcpy(boss1[7], "                   `........\\");
+		strcpy(boss1[8], "                    `-------'");
+
+		boss.setlook(boss1);
+
+		for (int count = 8; count >= 0; count--)
+			delete[] boss1[count];
+		delete[] boss1;
+
+		bossBullet = new char* [1];
+		bossBullet[0] = new char [3]; 
+		for (int count = 0; count < 3; count++)
+			bossBullet[0][count] = '-';
+
+		break;
+	}
+}
+
+bool levelBoss (int level)
+{
+	static int counter = 1;
+	switch (level)
+	{
+	case 1: if (counter--) initBoss(level);
+		break;
+	}
+
+	if (checkBulletCollision(boss)) boss.life--;
+	moveBoss();
+	renderEnemy(boss);
+	if (checkBulletCollision(boss)) boss.life--;
+	checkEnemyCollision(bossBullets, 20);
+
+	return checkClear(bossBullets, 100);
+}
+
+void moveBoss()
+{
+	static int move = 0;
+
+	switch (move)
+	{
+	case 0: boss.location.X -= (boss.location.X > 30);
+		break;
+	case 1: boss.location.X += (boss.location.X < 70);
+		break;
+	case 2: boss.location.Y -= (boss.location.Y > 0);
+		break;
+	case 3: boss.location.Y += (boss.location.Y < 15);
+		break;
+	}
+
+	if ((rand() % 100) > 60)
+		createEnemy(bossBullets, 20, 1, 3, bossBullet, boss.location.Y - 4, boss.location.X - 1);
 }

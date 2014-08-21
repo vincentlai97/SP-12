@@ -22,8 +22,9 @@ struct enemies
 	int size[2];
 	char** look;
 	bool dir;
+	int life;
 
-	void set(int x, int y, int width, int height, bool d)
+	void set(int x, int y, int width, int height, int d)
 	{
 		location.X = x;
 		location.Y = y;
@@ -34,10 +35,10 @@ struct enemies
 
 	void setlook(char** l)
 	{
-		look = new char*[size[0]];
-		for (int count = 0; count < size[0]; count++)
+		look = new char*[size[1]];
+		for (int count = 0; count < size[1]; count++)
 		{
-			look[count] = new char[size[1]];
+			look[count] = new char[size[0]];
 			strcpy(look[count], l[count]);
 		}
 
@@ -58,6 +59,9 @@ extern enemies catArr[40];
 extern enemies asteArr[60];
 extern double level;
 extern char** enemyaste;
+extern enemies boss;
+extern enemies bossBullets[100];
+extern char** bossBullet;
 
 void init();                // initialize your variables, allocate memory, etc
 void getInput();            // get input from player
@@ -67,12 +71,15 @@ void shutdown();            // do clean up, free memory
 void chooseShip(int);
 void renderShip();
 void renderBullets();
-bool createEnemy(enemies[], int, int, int, char** , int);
+bool createEnemy(enemies[], int, int, int, char** , int, int x = 80);
 void renderEnemy(enemies[], int);
+void renderEnemy(enemies&);
 bool checkBulletCollision(enemies[], int);
+bool checkBulletCollision(enemies&);
 void checkEnemyCollision(enemies[], int);
 bool Levelcat(int);
 bool Levelaste(int);
+bool levelBoss(int);
 void displayLevel(int);
 bool checkClear(enemies[], int);
 
@@ -82,6 +89,8 @@ void moveCat(int);
 void initAste();
 void createAste(int);
 void moveAste(int);
+void initBoss(int);
+void moveBoss();
 
 void Pause();
 void gRestart();
