@@ -162,10 +162,10 @@ void render()
 	if (!(num++%3) && num < 31)
 	createCat(10);
 
-	checkBulletCollision(catArr, 10);
+	if (checkBulletCollision(catArr, 10)) score += 10;
 	moveCat(10);
 	renderEnemy(catArr, 10);
-	checkBulletCollision(catArr, 10);
+	if (checkBulletCollision(catArr, 10)) score += 10;
 	checkEnemyCollision(catArr, 10);
 	CurrentScore();
 }

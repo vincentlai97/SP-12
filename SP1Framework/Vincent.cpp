@@ -69,7 +69,7 @@ void renderEnemy(enemies enemyArr[], int size)
 	}
 }
 
-void checkBulletCollision(enemies enemyArr[], int size)
+bool checkBulletCollision(enemies enemyArr[], int size)
 {
 	for (int count = shipLen; count < consoleSize.X; count++)
 	{
@@ -84,13 +84,13 @@ void checkBulletCollision(enemies enemyArr[], int size)
 						bullets[count] = 0;
 						enemyArr[count2].size[0] = 0;
 						enemyArr[count2].size[1] = 0;
-						score+=10;
-
+						return 1;
 					}
 				}
 			}
 		}
 	}
+	return 0;
 }
 
 void initCat ()

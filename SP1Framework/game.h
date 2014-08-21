@@ -67,7 +67,7 @@ void renderShip();
 void renderBullets();
 bool createEnemy (enemies[], int, int, int, char** , int);
 void renderEnemy(enemies[], int);
-void checkBulletCollision(enemies[], int);
+bool checkBulletCollision(enemies[], int);
 void checkEnemyCollision (enemies[], int);
 
 void initCat();
