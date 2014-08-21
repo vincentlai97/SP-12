@@ -41,7 +41,16 @@ void chooseShip(int shipNum)
 
 void CurrentScore()
 {
-	gotoXY(50,0);
+	gotoXY(45,0);
 	colour(0x10A);
-	std::cout << "score: " << score << std::endl;
+	std::cout << "Score: " << score << std::endl;
+}
+
+
+
+void displayLevel (int level)
+{	
+		gotoXY(20, 0);
+		colour(0x10A);
+		std::cout << "Level: " << level << std::endl;
 }

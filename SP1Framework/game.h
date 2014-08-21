@@ -52,11 +52,12 @@ extern COORD consoleSize;
 extern char ship[5][20];
 extern size_t shipLen;
 extern int bullets[80];
-extern enemies enemyNum[10];
 extern int score;
 extern char** enemycat;
 extern enemies catArr[40];
+extern enemies asteArr[60];
 extern double level;
+extern char** enemyaste;
 
 void init();                // initialize your variables, allocate memory, etc
 void getInput();            // get input from player
@@ -66,14 +67,21 @@ void shutdown();            // do clean up, free memory
 void chooseShip(int);
 void renderShip();
 void renderBullets();
-bool createEnemy (enemies[], int, int, int, char** , int);
+bool createEnemy(enemies[], int, int, int, char** , int);
 void renderEnemy(enemies[], int);
 bool checkBulletCollision(enemies[], int);
-void checkEnemyCollision (enemies[], int);
+void checkEnemyCollision(enemies[], int);
+bool Levelcat(int);
+bool Levelaste(int);
+void displayLevel(int);
+bool checkClear(enemies[], int);
 
 void initCat();
 void createCat(int);
 void moveCat(int);
+void initAste();
+void createAste(int);
+void moveAste(int);
 
 void Pause();
 void ChangeShip();

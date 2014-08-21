@@ -107,7 +107,20 @@ void initCat ()
 	enemycat[1][2] = static_cast<char>(234);
 }
 
-void moveCat(int size)
+void initAste ()
+{
+	enemyaste = new char*[1];
+	enemyaste[0] = new char [5];
+
+	enemyaste[0][0] = '@';
+	enemyaste[0][1] = '}';
+	for (int count = 2; count < 5; count++)
+	{
+		enemyaste[0][count] = '=';
+	}
+}
+
+void moveCat (int size)
 {
 	for (int count = 0; count < size; count++)
 	{
@@ -129,10 +142,28 @@ void moveCat(int size)
 	}
 }
 
-void createCat (int Num)
+void moveAste (int size)
 {
-	static int y = 1;
-	createEnemy(catArr, Num, 2, 3, enemycat, y);
+	for (int count = 0; count < size; count++)
+	{
+		if (asteArr[count].size[0])
+		{
+			asteArr[count].location.X--;
+		}
+	}
+}
+
+void createCat (int num)
+{
+	static const int y = 1;
+	createEnemy(catArr, num, 2, 3, enemycat, y);
+}
+
+void createAste (int num)
+{
+	int y = rand() % 21 + 1;
+	int len = rand() % 3 + 1;
+	createEnemy(asteArr, num, 1, len, enemyaste, y);
 }
 
 void checkEnemyCollision (enemies enemyArr[], int size)
@@ -148,4 +179,53 @@ void checkEnemyCollision (enemies enemyArr[], int size)
 			enemyArr[count].size[0] = 0;
 		}
 	}
+}
+
+bool Levelcat (int level)
+{
+	int num = (level == 1 ? 10 : (level == 2 ? 20 : 40));
+
+	static int counter = 0;
+
+	if (!(counter++%3) && counter <= num*3)
+		createCat(num);
+
+	if (checkBulletCollision(catArr, num)) score += num;
+	moveCat(num);
+	renderEnemy(catArr, num);
+	if (checkBulletCollision(catArr, num)) score += num;
+	checkEnemyCollision(catArr, num);
+
+	return checkClear(catArr, num);
+}
+
+bool Levelaste (int level)
+{
+	int num = (level == 1 ? 20 : (level == 2 ? 35 : 60));
+
+	static int counter = 0;
+
+ 	if (counter <= num && (rand() % 50) + num*3 > 40)
+	{
+		createAste(num);
+		counter++;
+	}
+
+	if (checkBulletCollision(asteArr, num)) score += 10;
+	moveAste(num);
+	renderEnemy(asteArr, num);
+	if (checkBulletCollision(asteArr, num)) score += 10;
+	checkEnemyCollision(asteArr, num);
+
+	return checkClear(asteArr, num);
+}
+
+bool checkClear (enemies enemyArr[], int size)
+{
+	for (int count = 0; count < size; count++)
+	{
+		if (enemyArr[count].size[0])
+			return 0;
+	}
+	return 1;
 }
