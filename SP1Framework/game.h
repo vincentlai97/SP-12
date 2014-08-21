@@ -74,6 +74,7 @@ void initCat();
 void createCat(int);
 void moveCat(int);
 
+void Pause();
 void ChangeShip();
 void DisplayOptions();
 void DisplayMainMenu();

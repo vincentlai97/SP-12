@@ -31,6 +31,7 @@ void DisplayMainMenu()
 	cout << endl;
 	cout << "1 - Start" << endl << "2 - Options" << endl  << "3 - Change Ship" << endl << "4 - Exit" << endl;
 	cout << "Enter the choice you want and press enter" << endl;
+	return;
 }
 
 void DisplayOptions()
@@ -51,14 +52,40 @@ void DisplayOptions()
 	case 2: shutdown();
 		break;
 	}
+	return;
 }
 
 void DisplayInGame()
 {
 	colour(0x10A);
 	cls();
+	cout << "******  " << " ******  " << "*      * " << "******* " << "******* " << endl;
+	cout << "*     * " << "*      * " << "*      * " << "*       " << "*       " << endl;
+	cout << "******  " << "******** " << "*      * " << "******* " << "******* " << endl;
+	cout << "*       " << "*      * " << "*      * " << "      * " << "*       " << endl;
+	cout << "*       " << "*      * " << " ******  " << "******* " << "******* " << endl;
+	cout << "1 - Return to Main Menu" << endl;
 	cout << "2 - Options" << endl;
-	cout << "3 - Options" << endl;
+	cout << "3 - Exit Game" << endl;
+	int H = 0;
+	H = getKey();
+
+	switch ( H )
+	{
+	case 1: DisplayMainMenu();
+		break;
+	case 2: DisplayOptions();
+		break;
+	case 3: shutdown();
+		break;
+	}
+	return;
+}
+
+void Pause()
+{
+	system("pause");
+	DisplayInGame();
 }
 
 void ChangeShip()
@@ -115,6 +142,12 @@ void ChangeShip()
 		for (int count = 0; count < 5; count++)
 		{
 			strcpy(ship[count], ship2[count]);
+		}
+		break;
+	default:
+		for (int count = 0; count < 5; count++)
+		{
+			strcpy(ship[count], ship1[count]);
 		}
 		break;
 	}

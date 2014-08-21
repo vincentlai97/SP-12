@@ -62,6 +62,7 @@ void shutdown()
 {
     // Reset to white text on black background
 	colour(FOREGROUND_BLUE | FOREGROUND_GREEN | FOREGROUND_RED);
+	exit (1);
 }
 
 void getInput()
@@ -116,7 +117,11 @@ void update(double dt)
 
     // quits the game if player hits the escape key
     if (keyPressed[K_ESCAPE])
-        g_quitGame = true;    
+	{
+		DisplayInGame();
+		system("pause");
+	}
+        //g_quitGame = true;    
 }
 
 void render()
