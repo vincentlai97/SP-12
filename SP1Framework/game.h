@@ -84,6 +84,7 @@ void createAste(int);
 void moveAste(int);
 
 void Pause();
+void gRestart();
 void ChangeShip();
 void DisplayOptions();
 void DisplayMainMenu();

@@ -7,6 +7,9 @@ using std::cout;
 using std::cin;
 using std::endl;
 
+const unsigned char FPS = 20; // FPS of this game
+const unsigned int frameTime = 1000 / FPS; // time for each frame
+
 int getKey()
 {
 	int choice;
@@ -66,7 +69,8 @@ void DisplayInGame()
 	cout << "*       " << "*      * " << " ******  " << "******* " << "******* " << endl;
 	cout << "1 - Return to Main Menu" << endl;
 	cout << "2 - Options" << endl;
-	cout << "3 - Exit Game" << endl;
+	cout << "3 - Restart" << endl;
+	cout << "4 - Exit Game" << endl;
 	int H = 0;
 	H = getKey();
 
@@ -76,7 +80,10 @@ void DisplayInGame()
 		break;
 	case 2: DisplayOptions();
 		break;
-	case 3: shutdown();
+	case 3: init(); 
+		gRestart();
+		break;
+	case 4: shutdown();
 		break;
 	}
 	return;
@@ -151,4 +158,16 @@ void ChangeShip()
 		}
 		break;
 	}
+}
+
+void gRestart()
+{
+	g_timer.startTimer();    // Start timer to calculate how long it takes to render this frame
+    while (!g_quitGame)      // run this loop until user wants to quit 
+	{        
+        getInput();                         // get keyboard input
+        update(g_timer.getElapsedTime());   // update the game
+        render();                           // render the graphics output to screen
+        g_timer.waitUntil(frameTime);       // Frame rate limiter. Limits each frame to a specified time in ms.      
+	}    
 }
