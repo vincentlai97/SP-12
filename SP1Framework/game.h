@@ -24,12 +24,13 @@ struct enemies
 	bool dir;
 	int life;
 
-	void set(int x, int y, int width, int height, int d)
+	void set(int x, int y, int width, int height, int l, int d = 1)
 	{
 		location.X = x;
 		location.Y = y;
 		size[0] = width;
 		size[1] = height;
+		life = l;
 		dir = d;
 	}
 
@@ -73,7 +74,7 @@ void shutdown();            // do clean up, free memory
 void chooseShip(int);
 void renderShip();
 void renderBullets();
-bool createEnemy(enemies[], int, int, int, char** , int, int x = 80);
+bool createEnemy(enemies[], int, int, int, char** , int, int x = 80, int life = 1);
 void renderEnemy(enemies[], int);
 void renderEnemy(enemies&);
 bool checkBulletCollision(enemies[], int);
@@ -84,6 +85,7 @@ bool Levelaste(int);
 bool levelBoss(int);
 void displayLevel(int);
 bool checkClear(enemies[], int);
+bool checkClear (enemies);
 
 void initCat();
 void createCat(int);
@@ -93,6 +95,7 @@ void createAste(int);
 void moveAste(int);
 void initBoss(int);
 void moveBoss();
+void moveBossBullets(int);
 
 void Pause();
 void gRestart();
