@@ -9,4 +9,8 @@ void LifeCounter()
 	colour(0x10A);
 	std::cout << "Life: ";
 	std::cout<< Life << std::endl;
+	if (Life==0)
+	{
+		GameOver();
+	}
 }

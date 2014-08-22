@@ -101,6 +101,7 @@ void DisplayOptions();
 void DisplayMainMenu();
 void DisplayInGame();
 void Selection();
+void GameOver();
 int getKey(); //Get user input, not to be confused with the up down etc
 
 void CurrentScore();

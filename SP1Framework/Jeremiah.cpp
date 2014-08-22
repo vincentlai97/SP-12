@@ -199,3 +199,28 @@ void Selection()
 		}
 	} while ( choice != 4 );
 }
+
+void GameOver()
+{
+	cls();
+	cout << endl << endl << endl << endl << endl << endl << endl << endl;
+	cout << "                                  GAME OVER" << endl;
+	cout << "                                  1.Restart? " << endl;
+	cout << "                                  2.Main Menu?" << endl;
+	cout << "                                  3.Exit" << endl;
+	cout << "                                   " << endl;
+	int H = 0;
+	H = getKey();
+
+	switch ( H )
+	{
+	case 1: init(); 
+		gRestart();
+		break;
+	case 2: DisplayMainMenu();
+		break;
+	case 3: shutdown();
+		break;
+	}
+	return;
+}
