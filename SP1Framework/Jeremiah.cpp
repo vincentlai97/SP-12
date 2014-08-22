@@ -21,6 +21,7 @@ void DisplayMainMenu()
 {
 	colour(0x10A);
 	cls();
+	cout << endl << endl << endl;
 	cout << "                             #######  " << " " << "########   " << endl;
 	cout << "                            ######### " << " " << "###   #### " << endl;
 	cout << "                           ####    ###" << " " << "###    ####" << endl;
@@ -38,6 +39,7 @@ void DisplayMainMenu()
 	cout << "                                4 - Exit Game" << endl;
 	cout << "                    Enter the choice you want and press enter" << endl;
 	cout << "                                      ";
+	Selection();
 	return;
 }
 
@@ -48,7 +50,7 @@ void DisplayOptions()
 	cout << "Sound" << endl;
 	cout << "Options" << endl;
 	cout << "1 - Back" << endl;
-	cout << "4 - Exit" << endl;
+	cout << "2 - Exit" << endl;
 	int H = 0;
 	H = getKey();
 
@@ -67,25 +69,27 @@ void DisplayInGame()
 	gotoXY(35,5);
 	colour(0x10A);
 	cls();
+	cout << endl << endl << endl << endl;
 	cout << "                        ****  " << " ****  " << "*    * " << "***** " << "***** " << endl;
 	cout << "                        *   * " << "*    * " << "*    * " << "*     " << "*     " << endl;
 	cout << "                        ****  " << "****** " << "*    * " << "***** " << "***** " << endl;
 	cout << "                        *     " << "*    * " << "*    * " << "    * " << "*     " << endl;
 	cout << "                        *     " << "*    * " << " ****  " << "***** " << "***** " << endl;
-	cout << "                                1 - Options" << endl;
-	cout << "                                2 - Restart" << endl;
-	cout << "                                3 - Exit Game" << endl;
+	cout << "                                1 - Restart" << endl;
+	cout << "                                2 - Exit Game" << endl;
+	cout << "                                3 - Back to Main Menu" << endl;
 	cout << "                                     ";
 	int H = 0;
 	H = getKey();
 
 	switch ( H )
 	{
-	case 1: DisplayOptions();
+	case 1: init(); 
+		gRestart();
 		break;
-	case 2: gRestart();
+	case 2: shutdown();
 		break;
-	case 3: shutdown();
+	case 3: DisplayMainMenu();
 		break;
 	}
 	return;
@@ -93,7 +97,7 @@ void DisplayInGame()
 
 void Pause()
 {
-	system("pause");
+	//system("pause");
 	DisplayInGame();
 }
 
@@ -164,7 +168,6 @@ void ChangeShip()
 
 void gRestart()
 {
-	init(); 
 	g_timer.startTimer();    // Start timer to calculate how long it takes to render this frame
     while (!g_quitGame)      // run this loop until user wants to quit 
 	{        
@@ -173,4 +176,26 @@ void gRestart()
         render();                           // render the graphics output to screen
         g_timer.waitUntil(frameTime);       // Frame rate limiter. Limits each frame to a specified time in ms.      
 	}    
+}
+
+void Selection()
+{
+	int choice = 0;
+	do
+	{
+		choice = getKey();
+		switch(choice)
+		{
+		case 1: init();      // initialize your variables
+			mainLoop();
+			break;
+		case 2: DisplayOptions();
+			break;
+		case 3: ChangeShip();
+			break;
+		case 4: shutdown();
+		default:
+			break;
+		}
+	} while ( choice != 4 );
 }

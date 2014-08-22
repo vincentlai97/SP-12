@@ -28,23 +28,7 @@ int main()
 {
 	int choice = 0;
 	DisplayMainMenu(); //Show main menu
-	do
-	{
-		choice = getKey();
-		switch(choice)
-		{
-		case 1: init();      // initialize your variables
-			mainLoop();
-			break;
-		case 2: DisplayOptions();
-			break;
-		case 3: ChangeShip();
-			break;
-		case 4: shutdown();
-		default:
-			break;
-		}
-	} while ( choice != 4 );
+	Selection();
 	return EXIT_SUCCESS;
 }
 

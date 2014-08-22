@@ -63,6 +63,7 @@ extern enemies boss;
 extern enemies bossBullets[100];
 extern char** bossBullet;
 
+void mainLoop();
 void init();                // initialize your variables, allocate memory, etc
 void getInput();            // get input from player
 void update(double dt);     // update the game and the state of the game
@@ -98,6 +99,7 @@ void ChangeShip();
 void DisplayOptions();
 void DisplayMainMenu();
 void DisplayInGame();
+void Selection();
 int getKey(); //Get user input, not to be confused with the up down etc
 
 void CurrentScore();
