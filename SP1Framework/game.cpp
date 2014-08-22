@@ -173,22 +173,17 @@ void render()
 	{
 		if (Levelcat (static_cast<int>(level))) level = 1.2;
 		displayLevel(static_cast<int>(level));
-		CurrentScore();
-		LifeCounter();
  	}
 	if (level == 1.2)
 	{
   		if (Levelaste (static_cast<int>(level))) level = 1.3;
 		displayLevel(static_cast<int>(level));
-		CurrentScore();
-		LifeCounter();
 	}
-	/*if (level == 1.1)
+	if (level == 1.3)
 	{
-		initBoss(1);
 		if (levelBoss(static_cast<int>(level))) level = 2.1;
 		displayLevel(static_cast<int>(level));
+	}
 		CurrentScore();
 		LifeCounter();
-	}*/
 }
