@@ -178,14 +178,17 @@ bool checkEnemyCollision (enemies enemyArr[], int size)
 {
 	for (int count = 0; count < size; count++)
 	{
-		if (enemyArr[count].location.X >= 1 - enemyArr[count].size[0] + shipLocation.X && 
-			enemyArr[count].location.X <= shipLen + shipLocation.X &&
-			enemyArr[count].location.Y >= -1 - enemyArr[count].size[1] + shipLocation.Y &&
-			enemyArr[count].location.Y <= 2 + shipLocation.Y)
+		if (enemyArr[count].size[0] && enemyArr[count].size[1])
 		{
-			enemyArr[count].size[0] = 0;
-			enemyArr[count].size[0] = 0;
-			return 1;
+			if (enemyArr[count].location.X >= 1 - enemyArr[count].size[0] + shipLocation.X && 
+				enemyArr[count].location.X <= shipLen + shipLocation.X &&
+				enemyArr[count].location.Y >= -1 - enemyArr[count].size[1] + shipLocation.Y &&
+				enemyArr[count].location.Y <= 2 + shipLocation.Y)
+			{
+				enemyArr[count].size[0] = 0;
+				enemyArr[count].size[0] = 0;
+				return 1;
+			}
 		}
 	}
 	return 0;
