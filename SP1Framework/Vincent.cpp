@@ -174,7 +174,7 @@ void createAste (int num)
 	createEnemy(asteArr, num, 3, 1, enemyaste, y);
 }
 
-void checkEnemyCollision (enemies enemyArr[], int size)
+bool checkEnemyCollision (enemies enemyArr[], int size)
 {
 	for (int count = 0; count < size; count++)
 	{
@@ -185,8 +185,10 @@ void checkEnemyCollision (enemies enemyArr[], int size)
 		{
 			enemyArr[count].size[0] = 0;
 			enemyArr[count].size[0] = 0;
+			return 1;
 		}
 	}
+	return 0;
 }
 
 bool Levelcat (int level)
@@ -202,7 +204,7 @@ bool Levelcat (int level)
 	moveCat(num);
 	renderEnemy(catArr, num);
 	if (checkBulletCollision(catArr, num)) score += num;
-	checkEnemyCollision(catArr, num);
+	if (checkEnemyCollision(catArr, num)) Life -= 1;
 
 	return checkClear(catArr, num);
 }
@@ -223,7 +225,7 @@ bool Levelaste (int level)
 	moveAste(num);
 	renderEnemy(asteArr, num);
 	if (checkBulletCollision(asteArr, num)) score += 10;
-	checkEnemyCollision(asteArr, num);
+	if(checkEnemyCollision(asteArr, num)) Life -= 1;
 
 	return checkClear(asteArr, num);
 }
@@ -288,7 +290,7 @@ bool levelBoss (int level)
 	moveBoss();
 	renderEnemy(boss);
 	if (checkBulletCollision(boss)) boss.life--;
-	checkEnemyCollision(bossBullets, 20);
+	if(checkEnemyCollision(bossBullets, 20)) Life -= 1;
 
 	return checkClear(bossBullets, 100);
 }

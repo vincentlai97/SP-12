@@ -26,6 +26,7 @@ char** boss1;
 enemies boss;
 enemies bossBullets[100];
 char** bossBullet;
+int Life;
 
 void init()
 {
@@ -64,6 +65,8 @@ void init()
 	initAste();
 
 	level = 1.1;
+	
+	Life = 3;
 
     elapsedTime = 0.0;
 }
@@ -171,12 +174,14 @@ void render()
 		if (Levelcat (static_cast<int>(level))) level = 1.2;
 		displayLevel(static_cast<int>(level));
 		CurrentScore();
+		LifeCounter();
  	}
 	if (level == 1.2)
 	{
   		if (Levelaste (static_cast<int>(level))) level = 1.3;
 		displayLevel(static_cast<int>(level));
 		CurrentScore();
+		LifeCounter();
 	}
 	/*if (level == 1.1)
 	{
@@ -184,5 +189,6 @@ void render()
 		if (levelBoss(static_cast<int>(level))) level = 2.1;
 		displayLevel(static_cast<int>(level));
 		CurrentScore();
+		LifeCounter();
 	}*/
 }
