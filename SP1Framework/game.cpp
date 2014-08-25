@@ -66,7 +66,7 @@ void init()
 
 	level = 1.1;
 	
-	Life = 3;
+	Life = char(3);
 
     elapsedTime = 0.0;
 }
