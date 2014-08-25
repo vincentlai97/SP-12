@@ -150,18 +150,25 @@ void ChangeShip()
 		{
 			strcpy(ship[count], ship1[count]);
 		}
+		init();
+		mainLoop();
 		break;
 	case 2:
 		for (int count = 0; count < 5; count++)
 		{
 			strcpy(ship[count], ship2[count]);
 		}
+		init();
+		mainLoop();
 		break;
-	default:
+
+	default: 
 		for (int count = 0; count < 5; count++)
 		{
 			strcpy(ship[count], ship1[count]);
 		}
+		init();
+		mainLoop();
 		break;
 	}
 }
@@ -169,12 +176,12 @@ void ChangeShip()
 void gRestart()
 {
 	g_timer.startTimer();    // Start timer to calculate how long it takes to render this frame
-    while (!g_quitGame)      // run this loop until user wants to quit 
+	while (!g_quitGame)      // run this loop until user wants to quit 
 	{        
-        getInput();                         // get keyboard input
-        update(g_timer.getElapsedTime());   // update the game
-        render();                           // render the graphics output to screen
-        g_timer.waitUntil(frameTime);       // Frame rate limiter. Limits each frame to a specified time in ms.      
+		getInput();                         // get keyboard input
+		update(g_timer.getElapsedTime());   // update the game
+		render();                           // render the graphics output to screen
+		g_timer.waitUntil(frameTime);       // Frame rate limiter. Limits each frame to a specified time in ms.      
 	}    
 }
 
@@ -202,6 +209,7 @@ void Selection()
 
 void GameOver()
 {
+	init(); 
 	cls();
 	cout << endl << endl << endl << endl << endl << endl << endl << endl;
 	cout << "                                  GAME OVER" << endl;
@@ -214,7 +222,7 @@ void GameOver()
 
 	switch ( H )
 	{
-	case 1: init(); 
+	case 1: init();
 		gRestart();
 		break;
 	case 2: DisplayMainMenu();
