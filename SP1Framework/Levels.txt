@@ -1,0 +1,36 @@
+LEVEL 11
+enemy = ASTEROID
+number = 20
+alwaysmove = true
+x_maxmove = 1
+y_maxmove = 0
+limit = false
+spawnchance = 10
+spawnbuffer = 1
+setspawn = false
+
+LEVEL 12
+enemy = CAT
+number = 10
+alwaysmove = true
+x_maxmove = 1
+y_maxmove = 1
+limit = false
+spawnchance = 100
+spawnbuffer = 3
+setspawn = true
+spawnlocation = 1
+
+Level 13
+enemy = BOSS1
+number = 1
+alwaysmove = false
+x_move = 5
+y_move = 5
+limit = true
+x_limit = 30 75
+y_limit = 1 20
+spwanchance = 100
+spawnbuffer = 0
+setspawn = true
+spawnlocation = 9

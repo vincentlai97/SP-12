@@ -3,7 +3,11 @@
 
 #include "Framework\timer.h"
 #include <string>
+#include <string.h>
 #include <vector>
+#include <fstream>
+
+using std::string;
 
 enum Keys
 {
@@ -16,34 +20,62 @@ enum Keys
     K_COUNT
 };
 
+enum dimension
+{
+	HEIGHT,
+	WIDTH,
+	DIMENSION
+};
+
+enum move
+{
+	UP,
+	DOWN,
+	LEFT,
+	RIGHT,
+	MOVE
+};
+
+enum direction
+{
+	DIRECTION_X,
+	DIRECTION_Y,
+	DIRECTION
+};
+
+enum limit
+{
+	UPPER,
+	LOWER,
+	LIMIT
+};
+
 struct enemies
 {
 	COORD location;
-	int size[2];
-	char** look;
-	bool dir;
+	int size[DIMENSION];
+	char** model;
 	int life;
+	int direction[DIRECTION];
 
-	void set(int x, int y, int width, int height, int l, int d = 1)
+	void set(int height, int width, int l)
 	{
-		location.X = x;
-		location.Y = y;
-		size[0] = width;
-		size[1] = height;
+		size[HEIGHT] = height;
+		size[WIDTH] = width;
 		life = l;
-		dir = d;
+		location.X = 0;
+		location.Y = 0;
 	}
 
-	void setlook(char** l)
+	void setModel (char** extModel)
 	{
-		look = new char*[size[1]];
-		for (int count = 0; count < size[1]; count++)
+		model = new char*[size[HEIGHT]];
+		for (int count = 0; count < size[HEIGHT]; count ++)
 		{
-			look[count] = new char[size[0]];
-			strcpy(look[count], l[count]);
+			model[count] = new char[size[WIDTH]];
+			for (int count2 = 0; count2 < size[WIDTH]; count2++)
+				model[count][count2] = extModel[count][count2];
 		}
-
-
 	}
 };
 
@@ -55,14 +87,6 @@ extern char ship[5][20];
 extern size_t shipLen;
 extern int bullets[80];
 extern int score;
-extern char** enemycat;
-extern enemies catArr[40];
-extern enemies asteArr[60];
-extern double level;
-extern char** enemyaste;
-extern enemies boss;
-extern enemies bossBullets[100];
-extern char** bossBullet;
 extern int Life;
 
 void mainLoop();
@@ -72,11 +96,8 @@ void update(double dt);     // update the game and the state of the game
 void render();              // renders the current state of the game to the console
 void shutdown();            // do clean up, free memory
 void chooseShip(int);
-void renderShip();
 void renderBullets();
 bool createEnemy(enemies[], int, int, int, char** , int, int x = 80, int life = 1);
-void renderEnemy(enemies[], int);
-void renderEnemy(enemies&);
 bool checkBulletCollision(enemies[], int);
 bool checkBulletCollision(enemies&);
 bool checkEnemyCollision(enemies[], int);
@@ -96,6 +117,17 @@ void moveAste(int);
 void initBoss(int);
 void moveBoss();
 void moveBossBullets(int);
+
+bool initEnemies(char*, int);
+bool initLevel(int);
+void renderShip();
+int spawnEnemy();
+bool spawnEnemy(enemies&);
+void renderEnemy(enemies[], int);
+void renderEnemy(enemies&);
+void moveEnemy(enemies[], int);
+void moveEnemy(enemies&);
+void moveEnemy(enemies&, int&, int&);
 
 void Pause();
 void gRestart();

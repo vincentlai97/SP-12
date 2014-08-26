@@ -3,16 +3,6 @@
 #include <iostream>
 #include <iomanip>
 
-void renderShip()
-{
-	for (int count = -2; count <= 2; count++)
-	{
-		gotoXY(shipLocation.X, shipLocation.Y + count);
-		colour(0x0C);
-		std::cout << ship[2 + count];
-	}
-}
-
 void renderBullets ()
 {
 	for (int count = shipLen; count < consoleSize.X; count++)

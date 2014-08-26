@@ -1,0 +1,13 @@
+CAT
+height = 2
+width = 3
+life = 1
+model =
+î_ü
+Í–Í
+ASTEROID
+height = 1
+width = 3
+life = 1
+model =
+@}=
