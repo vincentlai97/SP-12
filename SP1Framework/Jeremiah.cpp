@@ -138,7 +138,7 @@ void ChangeShip()
 	{
 		std::cout << ship2[2 + count] << endl;
 	}
-	cout << endl << "Press 1 for Ship 1 and 2 for ship 2" << endl << "Then press 1 and enter to start the game" << endl;
+	cout << endl << "1 - X-Wing" << endl << "2 - Arrowhead" << endl << "3 - Main Menu" << endl;
 	int shipNum = 1;
 
 	cin >> shipNum;
@@ -161,7 +161,9 @@ void ChangeShip()
 		init();
 		mainLoop();
 		break;
-
+	case 3: DisplayMainMenu();
+		Selection();
+		break;
 	default: 
 		for (int count = 0; count < 5; count++)
 		{
@@ -193,8 +195,7 @@ void Selection()
 		choice = getKey();
 		switch(choice)
 		{
-		case 1: init();      // initialize your variables
-			mainLoop();
+		case 1: ChangeShip();
 			break;
 		case 2: DisplayOptions();
 			break;
@@ -213,8 +214,8 @@ void GameOver()
 	cls();
 	cout << endl << endl << endl << endl << endl << endl << endl << endl;
 	cout << "                                  GAME OVER" << endl;
-	cout << "                                  1.Restart? " << endl;
-	cout << "                                  2.Main Menu?" << endl;
+	cout << "                                  1.Continue? " << endl;
+	cout << "                                  2.Main Menu" << endl;
 	cout << "                                  3.Exit" << endl;
 	cout << "                                   " << endl;
 	int H = 0;
